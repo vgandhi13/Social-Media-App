@@ -33,3 +33,12 @@ const storage = multer.diskStorage({
     }
 });
 const upload = multer({storage}); //initialize multer with the storage configuration  --- detailed: anytime we want to upload a file, we will use this variable
+
+/* MONGOOSE SETUP */
+const PORT = process.env.PORT || 6001; //initialize port by default to 3001, but if not available then use the port 6001
+mongoose.connect(process.env.MONGO_URL, {
+    useNewURLParser: true,
+    useUnifiedTopology: true,
+}).then(()=>{
+    app.listen(PORT, () => console.log(`Server running on port: ${PORT}`));
+}).catch((error) => console.log(`${error} did not connect`));
