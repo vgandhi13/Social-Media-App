@@ -1,4 +1,4 @@
-# Social-Media-App
+# UMassConnect
 
 **Work In Progress** 🚧
 
