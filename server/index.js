@@ -8,12 +8,14 @@ import helmet from "helmet";
 import morgan from "morgan";
 import path from "path";
 import { fileURLToPath } from "url";
+import {register} from "./controllers/auth.js";
 
 /* CONFIGURATIONS for packages and middleware */
-const __filename = fileURLToPath(import.meta.url);          //because we used type modules we can do this
+const __filename = fileURLToPath(import.meta.url);          //because we used type modules in package.json we can do this
 const __dirname = path.dirname(__filename);
 dotenv.config(); // so that we can use dotenv files
 const app = express(); // initialize express
+//everything passed in app.use are middlewares
 app.use(express.json);
 app.use(helmet());
 app.use(helmet.crossOriginResourcePolicy({policy: "cross-origin"}));
@@ -33,6 +35,11 @@ const storage = multer.diskStorage({
     }
 });
 const upload = multer({storage}); //initialize multer with the storage configuration  --- detailed: anytime we want to upload a file, we will use this variable
+
+
+/*Routes WITH FILES */
+app.post("/auth/register", upload.single("picture"), register);
+
 
 /* MONGOOSE SETUP */
 const PORT = process.env.PORT || 6001; //initialize port by default to 3001, but if not available then use the port 6001
