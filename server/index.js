@@ -8,6 +8,7 @@ import helmet from "helmet";
 import morgan from "morgan";
 import path from "path";
 import { fileURLToPath } from "url";
+import authRoutes from "./routes/auth.js";
 import {register} from "./controllers/auth.js";
 
 /* CONFIGURATIONS for packages and middleware */
@@ -38,7 +39,10 @@ const upload = multer({storage}); //initialize multer with the storage configura
 
 
 /*Routes WITH FILES */
-app.post("/auth/register", upload.single("picture"), register);
+app.post("/auth/register", upload.single("picture"), register);  //the is not in the authRoutes because we need to use multer to upload the file, for other routes we can keep them separate
+
+/* Routes WITHOUT FILES */
+app.use("/auth", authRoutes); //this will prefix all the routes in authRoutes with /auth
 
 
 /* MONGOOSE SETUP */
