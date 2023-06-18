@@ -2,7 +2,7 @@
 
 **Work In Progress** 🚧
 
-## Goals behind this app:
+## Goals behind this social media website:
 
 1. **Campus Community Building:** A dedicated social media app can help foster a sense of community among students, faculty, and staff members within the university. It provides a platform for students to connect, collaborate, and engage with each other, promoting a stronger sense of belonging and shared experiences.
 
