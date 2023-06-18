@@ -42,3 +42,21 @@ export const register = async (req, res) => {  //because we are call mongodb dat
         res.status(500).json({error: err.message}); //this will send the error back to the frontend  500: internal server error
     }
 }
+
+/*LOGGING IN USER */
+export const login = async (req, res) => {
+    try {
+        const {email, password} = req.body; //we will grab the email and password when the user is trying to log in
+        const user = await User.findOne ({email: email}); //using mongoose to find the user based on the email
+        if (!user) return res.status(400).json({msg: "User does not exist"}); //if the user does not exist, we will send this message back to the frontend
+
+        const isMatch = await bcrypt.compare(password, user.password); //it will use the same salt and this will compare the password that the user entered with the password in the database
+        if (!isMatch) return res.status(400).json({msg: "Invalid Credentials"}); //if the password is incorrect, we will send this message back to the frontend
+        const token = jwt.sign({id: user.id}, process.env.JWT_SECRET); //this will create a token for us to use for authentication :  token is created using the user's id as the payload and a secret key (process.env.JWT_SECRET) for signing the token.
+        delete user.password; //this will delete the password from the user object
+        res.json({token, user}); //this will send the token and user back to the frontend
+    }
+    catch (err) {
+        res.status(500).json({error: err.message}); //this will send the error back to the frontend  500: internal server error
+    }
+}
