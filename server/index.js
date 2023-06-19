@@ -9,6 +9,7 @@ import morgan from "morgan";
 import path from "path";
 import { fileURLToPath } from "url";
 import authRoutes from "./routes/auth.js";
+import userRoutes from "./routes/users.js";
 import {register} from "./controllers/auth.js";
 
 /* CONFIGURATIONS for packages and middleware */
@@ -43,6 +44,7 @@ app.post("/auth/register", upload.single("picture"), register);  //the is not in
 
 /* Routes WITHOUT FILES */
 app.use("/auth", authRoutes); //this will prefix all the routes in authRoutes with /auth
+app.use("/user", userRoutes); //this will prefix all the routes in userRoutes with /user
 
 
 /* MONGOOSE SETUP */
