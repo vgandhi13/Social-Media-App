@@ -48,7 +48,7 @@ app.use("/user", userRoutes); //this will prefix all the routes in userRoutes wi
 
 
 /* MONGOOSE SETUP */
-const PORT = process.env.PORT || 6001; //initialize port by default to 3001, but if not available then use the port 6001
+const PORT = process.env.PORT || 6001; //initialize port by default to 3001, but if not available then use the port 6001         mongoose.connect returns a promise
 mongoose.connect(process.env.MONGO_URL, {
     useNewURLParser: true,
     useUnifiedTopology: true,
