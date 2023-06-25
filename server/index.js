@@ -10,7 +10,11 @@ import path from "path";
 import { fileURLToPath } from "url";
 import authRoutes from "./routes/auth.js";
 import userRoutes from "./routes/users.js";
+import postRoutes from "./routes/posts.js";
 import {register} from "./controllers/auth.js";
+import { verify } from "crypto";
+import { verifyToken } from "./middleware/auth.js";
+import { createPost } from "./controllers/posts.js";
 
 /* CONFIGURATIONS for packages and middleware */
 const __filename = fileURLToPath(import.meta.url);          //because we used type modules in package.json we can do this
@@ -40,11 +44,14 @@ const upload = multer({storage}); //initialize multer with the storage configura
 
 
 /*Routes WITH FILES */
+//upload.single("picture") - this will grab the picture property, if the image is located with "picture" in the http call, then this will grab it and upload it into the local
 app.post("/auth/register", upload.single("picture"), register);  //the is not in the authRoutes because we need to use multer to upload the file, for other routes we can keep them separate
+app.post("/posts", verifyToken, upload.single("picture"), createPost); //this will be posts/ (we are not using the prefix /posts because we are using it in the postRoutes, createPost is a controller we have set
 
 /* Routes WITHOUT FILES */
 app.use("/auth", authRoutes); //this will prefix all the routes in authRoutes with /auth
-app.use("/user", userRoutes); //this will prefix all the routes in userRoutes with /user
+app.use("/users", userRoutes); //this will prefix all the routes in userRoutes with /user
+app.use("/posts", postRoutes); //this will prefix all the routes in postRoutes with /posts
 
 
 /* MONGOOSE SETUP */
