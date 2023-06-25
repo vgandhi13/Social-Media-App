@@ -1,4 +1,4 @@
-import {express} from 'express';
+import express from 'express';
 import { getFeedPosts, getUserPosts, likePosts} from "../controllers/posts.js";
 import { verifyToken } from "../middleware/auth.js";
 
@@ -12,3 +12,5 @@ router.get("/:userId/posts", verifyToken, getUserPosts); // this will be posts/:
 
 /* UPDATE */
 router.patch("/:id/like", verifyToken, likePosts); // this will be posts/:id/likePost // this will allow us to like a post and unlike it
+
+export default router; //this will allow us to use the router in other files

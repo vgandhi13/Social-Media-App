@@ -52,7 +52,7 @@ export const getUserPosts = async (req, res) => {
 };
 
 /* UPDATE */
-export const likePost = async (req, res) => {
+export const likePosts = async (req, res) => {
     try {
         const { id } = req.params;      //the id comes from the query string
         const { userId } = req.body;
