@@ -21,3 +21,34 @@
 8. **Alumni Engagement:** The app can help strengthen the connection between current students and alumni. It provides a platform for alumni to stay engaged with the university, share career insights, mentorship opportunities, and contribute back to the student community.
 
 Please note that this markdown is a work in progress and may be subject to updates and improvements.
+
+## Backend Packages
+- `nodemon`: For automatic server restart during development.
+- `express`: Node.js framework for building web applications and APIs.
+- `body-parser`: Middleware for parsing request bodies.
+- `bcrypt`: Library for hashing and salting passwords.
+- `cors`: Middleware for enabling Cross-Origin Resource Sharing.
+- `dotenv`: For loading environment variables from a `.env` file.
+- `gridfs-stream`: Library for working with GridFS in MongoDB.
+- `multer`: Middleware for handling file uploads.
+- `multer-gridfs-storage`: Storage engine for multer that integrates with GridFS.
+- `helmet`: Middleware for enhancing the security of Express applications.
+- `morgan`: HTTP request logger middleware for Express.
+- `jsonwebtoken`: Library for implementing JSON Web Tokens (JWT) in Node.js.
+- `mongoose`: MongoDB object modeling tool for Node.js.
+
+## Frontend Packages
+- `create-react-app`: Command-line tool for creating React applications.
+- `react-redux`: Official Redux bindings for React.
+- `@reduxjs/toolkit`: Package providing utilities for working with Redux.
+- `redux-persist`: Library for persisting and rehydrating a Redux store.
+- `react-dropzone`: React component for handling file uploads and drag-and-drop interactions.
+- `dotenv`: For loading environment variables from a `.env` file.
+- `formik`: Library for building forms in React.
+- `yup`: Schema validation library for JavaScript and TypeScript.
+- `react-router-dom@6`: Library for handling routing in React applications.
+- `@mui/material`: Material-UI library for React components.
+- `@emotion/react`: Library for writing CSS styles in JavaScript.
+- `@emotion/styled`: Styled components library that integrates with Emotion.
+- `@mui/icons-material`: Material-UI library for SVG icons.
+

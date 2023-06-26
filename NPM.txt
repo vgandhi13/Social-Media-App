@@ -1,5 +1,157 @@
+Server:
 npm i -g nodemon
 npm i express body-parser bcrypt cors dotenv gridfs-stream multer multer-gridfs-storage helmet morgan jsonwebtoken mongoose
 npm init -y
 
 ---Added type: module to package.json so we can use import instead of require
+
+
+
+Client:
+
+1. npx create-react-app client   //if dont have npx, first write npm i -g npx
+1. npm i react-redux @reduxjs/toolkit redux-persist react-dropzone dotenv formik yup react-router-dom@6 @mui/material @emotion/react @emotion/styled @mui/icons-material
+//redux is the most popular entireprise level state management tool, toolkit is a wrapper around redux making it very easy to use, redux-persist lets you selective store state into local storage if you need to (for eg: if we want to save our user and token information into local state so that when user closes the tab and come back, the information is still there in the browser)
+//react-dropzone will handle the file upload and file handling on the frontend so that we can send it to the backend
+// dotenv for environment variables
+//formik for form handling
+//yup with validation
+//react-router-dom@6 for handling react router, diff routes nd diff packages
+//material ui 
+
+
+
+Server Packages
+
+nodemon
+Global package used for automatically restarting the server during development.
+Provides a convenient way to monitor changes in the server code and automatically restart the server.
+Makes the development process more efficient and saves time.
+
+express
+Popular Node.js framework for building web applications and APIs.
+Provides a simple and intuitive API for handling HTTP requests and responses.
+Makes it easier to define routes, handle middleware, and perform various server-side operations.
+
+body-parser
+Middleware for parsing the request body in various formats (JSON, URL-encoded, etc.).
+Simplifies the process of extracting data from incoming requests.
+Makes it easier to work with request payloads and form data.
+
+bcrypt
+Library for hashing and salting passwords.
+Provides a secure way to store user passwords by encrypting them.
+Helps protect user data and prevent unauthorized access to sensitive information.
+
+cors
+Middleware that enables Cross-Origin Resource Sharing (CORS).
+Allows controlled access to server resources from different domains.
+Essential for handling API requests from the client application running on a different domain.
+
+dotenv
+Package for loading environment variables from a .env file.
+Simplifies the management of sensitive information (e.g., API keys, database credentials) in development and production environments.
+Helps keep sensitive data separate from the codebase and facilitates easy configuration.
+
+gridfs-stream
+Library for working with GridFS, a specification for storing large files in MongoDB.
+Useful when dealing with file uploads and storage in the MongoDB database.
+Provides an API for interacting with GridFS streams and managing files stored in the database.
+
+multer
+Middleware for handling file uploads in Node.js.
+Enables easy handling of multipart/form-data requests and processing of uploaded files.
+Allows the server to receive and save files sent by the client application.
+
+multer-gridfs-storage
+Storage engine for multer that integrates with GridFS in MongoDB.
+Simplifies the process of storing uploaded files in GridFS.
+Provides an easy way to configure multer to store files in the MongoDB database.
+
+helmet
+Middleware for enhancing the security of Express applications.
+Helps set various HTTP headers to protect against common web vulnerabilities.
+Adds an extra layer of security by applying best practices to prevent potential attacks.
+
+morgan
+HTTP request logger middleware for Express.
+Logs request details (e.g., URL, method, response status) for easier debugging and monitoring.
+Useful for tracking server activity and troubleshooting issues.
+
+jsonwebtoken
+Library for implementing JSON Web Tokens (JWT) in Node.js.
+Enables secure authentication and authorization by generating and verifying tokens.
+Useful for implementing user authentication and protecting routes in the server application.
+
+mongoose
+MongoDB object modeling tool for Node.js.
+Provides a higher-level abstraction for interacting with MongoDB.
+Simplifies database operations, schema definition, and validation.
+Allows seamless integration with Express and provides a powerful API for working with data models.
+
+Client Packages
+
+create-react-app
+Command-line tool for quickly creating a new React application with a predefined project structure and build configuration.
+Saves time by setting up the initial project setup and build pipeline.
+Provides a solid foundation for developing React applications.
+
+react-redux
+Official Redux bindings for React.
+Allows seamless integration of Redux with React components.
+Simplifies state management and facilitates data flow within the application.
+
+@reduxjs/toolkit
+Package that provides a set of utilities for working with Redux.
+Simplifies common Redux tasks such as creating actions, reducers, and stores.
+Encourages best practices and provides a more concise syntax for writing Redux code.
+
+redux-persist
+Library for persisting and rehydrating a Redux store.
+Enables saving and restoring portions of the application state across browser sessions.
+Useful for preserving user-specific data, such as authentication information, even after a page refresh.
+
+react-dropzone
+React component for handling file uploads and drag-and-drop interactions.
+Provides an intuitive and customizable file upload UI.
+Simplifies the process of uploading files from the client application to the server.
+
+dotenv
+Package for loading environment variables from a .env file.
+Allows configuring environment-specific settings and credentials.
+Ensures sensitive information is not exposed in the client-side code.
+
+formik
+Library for building forms in React.
+Provides an intuitive API for managing form state, validation, and submission.
+Simplifies form handling and validation logic, reducing boilerplate code.
+
+yup
+Schema validation library for JavaScript and TypeScript.
+Allows defining validation schemas and performing validation on form inputs.
+Integrates seamlessly with form libraries like Formik to handle form validation.
+
+react-router-dom@6
+Library for handling routing in React applications.
+Enables declarative routing and navigation between different views or pages.
+Provides a flexible and powerful routing system for building single-page applications.
+
+@mui/material
+Material-UI library for React components.
+Offers a set of pre-designed, customizable UI components following the Material Design guidelines.
+Helps create visually appealing and responsive user interfaces.
+
+@emotion/react
+Library for writing CSS styles in JavaScript.
+Allows writing CSS-in-JS styles using the Emotion library.
+Provides a convenient way to style React components and manage component-specific styles.
+
+@emotion/styled
+Styled components library that integrates with Emotion.
+Enables writing styled components using tagged template literals.
+Provides a CSS-like syntax for defining styles within React components.
+
+@mui/icons-material
+Material-UI library for SVG icons.
+Offers a wide range of pre-designed icons following the Material Design guidelines.
+Allows easy integration of icons into the application's user interface.
