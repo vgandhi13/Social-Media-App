@@ -65,7 +65,8 @@ export const likePosts = async (req, res) => {
         else {
             post.likes.set(userId, true);   //if the user has not liked the post, then we will add the like
         }
-
+        
+        // It then uses Post.findByIdAndUpdate(id, {likes: post.likes}, {new: true}) to update the post in the database with the new likes value. The {new: true} option ensures that the updated post is returned as the result.
         const updatedPost = await Post.findByIdAndUpdate (
             id,
             {likes: post.likes},
