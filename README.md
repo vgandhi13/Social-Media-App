@@ -52,3 +52,8 @@ Please note that this markdown is a work in progress and may be subject to updat
 - `@emotion/styled`: Styled components library that integrates with Emotion.
 - `@mui/icons-material`: Material-UI library for SVG icons.
 
+##Summary
+
+In client side I made the decision to use redux for state management. The reason behind this being, in the time tracking web project that I was recently a part
+of, we passed useState hooks and functions in different components as props for state management. However, we soon realized that it was not very efficient as our
+code grew larger and larger. While designing this project, I tried to find an alternative option for this and discovered redux. Through redux, the data is available to the entire application, and we can grab it anywhere we want.
