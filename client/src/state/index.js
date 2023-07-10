@@ -1,5 +1,36 @@
 import {createSlice} from "@reduxjs/toolkit";
 
+// In Redux Toolkit, a "slice" refers to a section of the Redux store that manages a 
+// specific part of the application state.
+
+/* example to understabd 
+const counterSlice = createSlice({
+  name: 'counter', // Name of the slice
+  initialState: 0, // Initial state for the slice
+  reducers: {
+    increment: (state) => state + 1,
+    decrement: (state) => state - 1,
+  },
+});
+
+export const { increment, decrement } = counterSlice.actions;
+export default counterSlice.reducer;
+
+In the example above, the createSlice function creates a slice named "counter". It specifies an
+ initial state of 0 and defines two reducers: increment and decrement
+
+ The createSlice function automatically generates action creators and action types based on the provided reducers. For example, the increment reducer generates an 
+ action creator called increment() and an action
+  type of 'counter/increment'. These can be used to dispatch actions to update the state.
+
+
+
+The actions property of the counterSlice object contains the generated action creators. 
+The reducer property contains the reducer function that handles the actions and updates the 
+state accordingly.
+
+  */
+
 const initialState = { 
     //this essentially will be the state stored in our global state, this data will be accessible throughout the application and we can grab it anywhere we want
     mode: "light", //this will represent light mode or dark mode globally
@@ -10,7 +41,7 @@ const initialState = {
 
 export const authSlice = createSlice({
     name: "auth",
-    initialState,
+    initialState, //over here this is an object, but this could be anything
     reducers: {     //reducers are functions that will modify and update the global state as we need
         setMode: (state) => {
             state.mode = state.mode === "light" ? "dark" : "light";
