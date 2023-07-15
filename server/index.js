@@ -11,61 +11,59 @@ import { fileURLToPath } from "url";
 import authRoutes from "./routes/auth.js";
 import userRoutes from "./routes/users.js";
 import postRoutes from "./routes/posts.js";
-import {register} from "./controllers/auth.js";
-import { verify } from "crypto";
-import { verifyToken } from "./middleware/auth.js";
+import { register } from "./controllers/auth.js";
 import { createPost } from "./controllers/posts.js";
+import { verifyToken } from "./middleware/auth.js";
 import User from "./models/User.js";
 import Post from "./models/Post.js";
-import {users, posts} from "./data/index.js";
+import { users, posts } from "./data/index.js";
 
-/* CONFIGURATIONS for packages and middleware */
-const __filename = fileURLToPath(import.meta.url);          //because we used type modules in package.json we can do this
+/* CONFIGURATIONS */
+const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-dotenv.config(); // so that we can use dotenv files
-const app = express(); // initialize express
-//everything passed in app.use are middlewares
+dotenv.config();
+const app = express();
 app.use(express.json());
 app.use(helmet());
-app.use(helmet.crossOriginResourcePolicy({policy: "cross-origin"}));
+app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
 app.use(morgan("common"));
-app.use(bodyParser.json({limit: "30mb", extended: true}));
-app.use(bodyParser.urlencoded({limit: "30mb", extended: true}));
-app.use(cors());    //invokes our cross origin resource sharing policy
-app.use("/assets", express.static(path.join(__dirname, 'public/assets'))); //serves static files from the public folder -- detailed: serves the directory where we keep our assets like images. For now we are storing it locally, but to make it scalable in future we can store it in a cloud storage like AWS S3 or Azure Blob Storage
+app.use(bodyParser.json({ limit: "30mb", extended: true }));
+app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
+app.use(cors());
+app.use("/assets", express.static(path.join(__dirname, "public/assets")));
 
-/*FILE STORAGE*/
+/* FILE STORAGE */
 const storage = multer.diskStorage({
-    destination: (req, file, cb) => {       //anytime a user uploads a file to a website, we want to store it in the public/assets folder
-       cb(null, "public/assets"); 
-    },
-    filename: (req, file, cb) => {
-        cb(null, req.originalname);
-    }
+  destination: function (req, file, cb) {
+    cb(null, "public/assets");
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname);
+  },
 });
-const upload = multer({storage}); //initialize multer with the storage configuration  --- detailed: anytime we want to upload a file, we will use this variable
+const upload = multer({ storage });
 
+/* ROUTES WITH FILES */
+app.post("/auth/register", upload.single("picture"), register);
+app.post("/posts", verifyToken, upload.single("picture"), createPost);
 
-/*Routes WITH FILES */
-//upload.single("picture") - this will grab the picture property, if the image is located with "picture" in the http call, then this will grab it and upload it into the local
-app.post("/auth/register", upload.single("picture"), register);  //the is not in the authRoutes because we need to use multer to upload the file, for other routes we can keep them separate
-app.post("/posts", verifyToken, upload.single("picture"), createPost); //this will be posts/ (we are not using the prefix /posts because we are using it in the postRoutes, createPost is a controller we have set
-
-/* Routes WITHOUT FILES */
-app.use("/auth", authRoutes); //this will prefix all the routes in authRoutes with /auth
-app.use("/users", userRoutes); //this will prefix all the routes in userRoutes with /user
-app.use("/posts", postRoutes); //this will prefix all the routes in postRoutes with /posts
-
+/* ROUTES */
+app.use("/auth", authRoutes);
+app.use("/users", userRoutes);
+app.use("/posts", postRoutes);
 
 /* MONGOOSE SETUP */
-const PORT = process.env.PORT || 6001; //initialize port by default to 3001, but if not available then use the port 6001         mongoose.connect returns a promise
-mongoose.connect(process.env.MONGO_URL, {
-    useNewURLParser: true,
+const PORT = process.env.PORT || 6001;
+mongoose
+  .connect(process.env.MONGO_URL, {
+    useNewUrlParser: true,
     useUnifiedTopology: true,
-}).then(()=>{
-    app.listen(PORT, () => console.log(`Server running on port: ${PORT}`));
+  })
+  .then(() => {
+    app.listen(PORT, () => console.log(`Server Port: ${PORT}`));
 
     /* ADD DATA ONE TIME */
     // User.insertMany(users);
     // Post.insertMany(posts);
-}).catch((error) => console.log(`${error} did not connect`));
+  })
+  .catch((error) => console.log(`${error} did not connect`));
