@@ -51,7 +51,7 @@ const initialValuesLogin = {
 const Form = () => {
   const [pageType, setPageType] = useState("login");
   const { palette } = useTheme();
-  const dispatch = useDispatch();
+  const dispatch = useDispatch(); // It provides a simplified way to interact with the Redux store and update the state in React functional components.
   const navigate = useNavigate();
   const isNonMobile = useMediaQuery("(min-width:600px)");
   const isLogin = pageType === "login";
@@ -94,7 +94,7 @@ const login = async (values, onSubmitProps) => {
     const loggedIn = await loggedInResponse.json();
     onSubmitProps.resetForm(); 
     if (loggedIn) {
-        dispatch(
+        dispatch( 
             setLogin({  //set login comes from our redux state, over here we are setting the user and response to the store
                 user: loggedIn.user,
                 token: loggedIn.token,
