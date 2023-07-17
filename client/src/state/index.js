@@ -39,6 +39,9 @@ const initialState = {
     posts: [], //this will represent all the posts we will store
 };
 
+// By organizing the state and related logic into slices, Redux promotes a modular and scalable approach to managing application state.
+// Each slice can handle a specific domain or feature, making it easier to reason about and maintain the state management codebase. 
+// Slices can be combined together to create the overall application state using Redux's combineReducers function.
 export const authSlice = createSlice({
     name: "auth",
     initialState, //over here this is an object, but this could be anything

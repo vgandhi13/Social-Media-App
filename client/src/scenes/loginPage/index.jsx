@@ -2,9 +2,10 @@ import {Box, Typography, useTheme, useMediaQuery} from "@mui/material";
 import Form from "./Form";
 
 const loginPage = () => {
-    const theme = useTheme();
-    const isNonMobileScreens = useMediaQuery("(mid-width: 1000px)");
-    
+    const theme = useTheme(); // hook provided by material ui, allows us to access stuff from theme.js
+    const isNonMobileScreens = useMediaQuery("(mid-width: 1000px)"); // hook is also provided by Material-UI and is used to perform responsive design by matching the current viewport size against a specified media query.
+    // This means that isNonMobileScreens will be true if the screen width is greater than or equal to 1000 pixels, indicating a non-mobile screen size.
+
     return <Box>
                 <Box width="100%" backgroundColor = {theme.palette.background.alt} p="1rem 6%" textAlign="center">
                     <Typography
