@@ -6,7 +6,8 @@ export const verifyToken = async (req, res, next) => {
         if (!token) {
             return res.status(403).send("Access Denied");
         }
-
+        
+        // Bearer is used on client side to indicate the server that the provided token is an access token
         if (token.startsWith("Bearer ")) { //toke will start with "Bearer ", this will be set on the frontend
             token = token.slice(7, token.length).trimLeft();    //this will remove the "Bearer " from the token : The slice(7, token.length) function call slices the token starting from index 7 until the end, effectively removing the first 7 characters. The trimLeft() function removes any leading whitespace characters that might be present after the slice operation.
         }
