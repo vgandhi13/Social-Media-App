@@ -11,7 +11,7 @@ const loginPage = () => {
                     <Typography
                         fontWeight="bold"
                         fontSize="32px"
-                        color="primary"
+                        color="#881c1c"
                         >
                         UMassConnect
                     </Typography>

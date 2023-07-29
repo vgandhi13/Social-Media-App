@@ -24,6 +24,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setMode, setLogout } from "state";
 import { useNavigate } from "react-router-dom";
 import FlexBetween from "components/FlexBetween";
+import SamTheMinutemanImage from "./SamTheMinuteman.jpeg";
 
 const Navbar = () => {
   const [isMobileMenuToggled, setIsMobileMenuToggled] = useState(false);
@@ -40,14 +41,29 @@ const Navbar = () => {
   const alt = theme.palette.background.alt;
 
   const fullName = `${user.firstName} ${user.lastName}`;  
+  const [isImageRotated, setIsImageRotated] = useState(false);
 
   return (
-    <FlexBetween padding="1rem 6%" backgroundColor={alt}>
+    <FlexBetween padding="1rem 3%" backgroundColor={"#881C1C"}>
       <FlexBetween gap="1.75rem">
+        {/* Image */}
+        <img
+          src={SamTheMinutemanImage} // Use the imported image
+          alt="UMassConnect Logo"
+          height={50}
+          onClick={() => navigate("/home")}
+          style={{
+            cursor: "pointer",
+            transition: "transform 0.3s ease", // Add transition property
+            transform: isImageRotated ? "rotate(15deg)" : "rotate(0)", // Apply rotation based on state
+          }}
+          onMouseEnter={() => setIsImageRotated(true)} // Set the state to true on hover
+          onMouseLeave={() => setIsImageRotated(false)} // Set the state to false when not hovering
+        />
         <Typography
           fontWeight="bold"
           fontSize="clamp(1rem, 2rem, 2.25rem)"
-          color="primary"
+          color="#a2aaad"
           onClick={() => navigate("/home")}
           sx={{
             "&:hover": {
