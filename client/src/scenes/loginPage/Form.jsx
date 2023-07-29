@@ -248,9 +248,9 @@ const login = async (values, onSubmitProps) => {
               sx={{
                 m: "2rem 0",
                 p: "1rem",
-                backgroundColor: palette.primary.main,
+                backgroundColor: "#881c1c",
                 color: palette.background.alt,
-                "&:hover": { color: palette.primary.main },
+                "&:hover": { color: "black" },
               }}
             >
               {isLogin ? "LOGIN" : "REGISTER"}
@@ -262,7 +262,7 @@ const login = async (values, onSubmitProps) => {
               }}
               sx={{
                 textDecoration: "underline",
-                color: palette.primary.main,
+                color: palette.primary.alt,
                 "&:hover": {
                   cursor: "pointer",
                   color: palette.primary.light,
