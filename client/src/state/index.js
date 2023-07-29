@@ -34,7 +34,7 @@ state accordingly.
 const initialState = { 
     //this essentially will be the state stored in our global state, this data will be accessible throughout the application and we can grab it anywhere we want
     mode: "light", //this will represent light mode or dark mode globally
-    user: null, //this will represent the user information we will store
+    user: null, //this will represent the user information we will store, it will cosist userId, and picturepath of the user
     token: null, //this will represent all the auth information we will store,
     posts: [], //this will represent all the posts we will store
 };
