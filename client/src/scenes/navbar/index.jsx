@@ -24,7 +24,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { setMode, setLogout } from "state";
 import { useNavigate } from "react-router-dom";
 import FlexBetween from "components/FlexBetween";
-import SamTheMinutemanImage from "./SamTheMinuteman.jpeg";
+import SamTheMinutemanImage from "./Untitleddesign-3.png";
+
 
 const Navbar = () => {
   const [isMobileMenuToggled, setIsMobileMenuToggled] = useState(false);
@@ -50,7 +51,7 @@ const Navbar = () => {
         <img
           src={SamTheMinutemanImage} // Use the imported image
           alt="UMassConnect Logo"
-          height={50}
+          height={80}
           onClick={() => navigate("/home")}
           style={{
             cursor: "pointer",

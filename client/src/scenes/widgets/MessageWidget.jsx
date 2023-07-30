@@ -4,8 +4,8 @@ import { Navigate } from "react-router-dom"
 import { useState } from "react"
 import { useSelector } from "react-redux"
 import { useEffect } from "react"
-import { Box, Typography,Divider, useTheme } from "@mui/material";
-import { ManageAccountsOutlined } from "@mui/icons-material"
+import { Box, Typography,Divider, useTheme, InputBase } from "@mui/material";
+import { ManageAccountsOutlined, BorderColor, Send } from "@mui/icons-material"
 import UserImage from "components/UserImage";
 import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
@@ -16,6 +16,8 @@ import Avatar from '@mui/material/Avatar';
 
 const MessageWidget = ({UserId, picturePath}) => {
     const [user, setUser] = useState();
+    const [messagePerson, setMessagePerson] = useState(""); // person selected to send a message
+    const [message, setMessage] = useState(""); // message sent to the person
     const token = useSelector((state) => state.token)
     const {palette} = useTheme()
     const dark = palette.neutral.dark;
@@ -52,7 +54,9 @@ const MessageWidget = ({UserId, picturePath}) => {
         friends,
     } = user;
 
-    
+    const handleListItemClick = (text) => {
+        setMessagePerson(text)
+    }
 
     return <WidgetWrapper>
         {/* FIRST ROW */}
@@ -68,17 +72,27 @@ const MessageWidget = ({UserId, picturePath}) => {
                   color={dark}
                   fontWeight="700"
                   fontSize="1.75rem"
-                  
+                  pr="3rem"
                 >
                   Messaging
                 </Typography>
+                
               </Box>
+              <BorderColor sx={{
+                    "&:hover": {
+                      cursor: "pointer",
+                    },
+                  }} />
             </FlexBetween>
           </FlexBetween>
 
           <Divider />
-          <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
-      <ListItem alignItems="flex-start">
+          {messagePerson === "" ? (<List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+      <ListItem sx={{
+                    "&:hover": {
+                      cursor: "pointer",
+                    },
+                  }} alignItems="flex-start" onClick={() => handleListItemClick('Brunch this weekend?')}>
         <ListItemAvatar>
           <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
         </ListItemAvatar>
@@ -143,7 +157,40 @@ const MessageWidget = ({UserId, picturePath}) => {
           }
         />
       </ListItem>
-    </List>
+    </List> ) : <Box sx={{
+        width: '25rem', // Set the width to 200 pixels
+        height: '25rem', // Set the height to 100 pixels
+        backgroundColor: {dark},
+        padding: '20px',
+        borderRadius: '5px',
+        display: 'flex', // Set the container to have flex display
+        flexDirection: 'column', // Align children vertically
+        justifyContent: 'flex-end', // Align children at the bottom of the container
+      }}>
+        <FlexBetween>
+            <InputBase
+                    placeholder="Type a message..."
+                    onChange={(e) => setMessage(e.target.value)}
+                    value={message}
+                    sx= {
+                        {
+                            width: "100%",
+                            backgroundColor: palette.neutral.light,
+                            borderRadius: "2rem",
+                            padding: "1rem 2rem",
+                            marginRight: "1rem"
+                        }
+                    }
+                >
+
+                </InputBase>
+                <Send sx={{
+                    "&:hover": {
+                      cursor: "pointer",
+                    },
+                  }} />
+        </FlexBetween>
+      </Box> }
     </WidgetWrapper>
 }
 
