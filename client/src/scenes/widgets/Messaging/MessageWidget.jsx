@@ -4,18 +4,17 @@ import { Navigate } from "react-router-dom"
 import { useState } from "react"
 import { useSelector } from "react-redux"
 import { useEffect } from "react"
-import { Box, Typography,Divider, useTheme } from "@mui/material";
-import { ManageAccountsOutlined } from "@mui/icons-material"
+import { Box, Typography,Divider, useTheme, InputBase } from "@mui/material";
+import { ManageAccountsOutlined, BorderColor, Send } from "@mui/icons-material"
 import UserImage from "components/UserImage";
-import ListItemText from '@mui/material/ListItemText';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
-import * as React from 'react';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import Avatar from '@mui/material/Avatar';
+import Inbox from "./Inbox";
+import Chatbox from "./Chatbox";
+
 
 const MessageWidget = ({UserId, picturePath}) => {
     const [user, setUser] = useState();
+    const [messagePerson, setMessagePerson] = useState(""); // person selected to send a message
+    
     const token = useSelector((state) => state.token)
     const {palette} = useTheme()
     const dark = palette.neutral.dark;
@@ -52,7 +51,9 @@ const MessageWidget = ({UserId, picturePath}) => {
         friends,
     } = user;
 
-    
+    const handleListItemClick = (text) => {
+        setMessagePerson(text)
+    }
 
     return <WidgetWrapper>
         {/* FIRST ROW */}
@@ -68,82 +69,22 @@ const MessageWidget = ({UserId, picturePath}) => {
                   color={dark}
                   fontWeight="700"
                   fontSize="1.75rem"
-                  
+                  pr="3rem"
                 >
                   Messaging
                 </Typography>
+                
               </Box>
+              <BorderColor sx={{
+                    "&:hover": {
+                      cursor: "pointer",
+                    },
+                  }} />
             </FlexBetween>
           </FlexBetween>
 
           <Divider />
-          <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
-      <ListItem alignItems="flex-start">
-        <ListItemAvatar>
-          <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
-        </ListItemAvatar>
-        <ListItemText
-          primary="Brunch this weekend?"
-          secondary={
-            <React.Fragment>
-              <Typography
-                sx={{ display: 'inline' }}
-                component="span"
-                variant="body2"
-                color="text.primary"
-              >
-                Ali Connors
-              </Typography>
-              {" — I'll be in your neighborhood doing errands this…"}
-            </React.Fragment>
-          }
-        />
-      </ListItem>
-      <Divider variant="inset" component="li" />
-      <ListItem alignItems="flex-start">
-        <ListItemAvatar>
-          <Avatar alt="Travis Howard" src="/static/images/avatar/2.jpg" />
-        </ListItemAvatar>
-        <ListItemText
-          primary="Summer BBQ"
-          secondary={
-            <React.Fragment>
-              <Typography
-                sx={{ display: 'inline' }}
-                component="span"
-                variant="body2"
-                color="text.primary"
-              >
-                to Scott, Alex, Jennifer
-              </Typography>
-              {" — Wish I could come, but I'm out of town this…"}
-            </React.Fragment>
-          }
-        />
-      </ListItem>
-      <Divider variant="inset" component="li" />
-      <ListItem alignItems="flex-start">
-        <ListItemAvatar>
-          <Avatar alt="Cindy Baker" src="/static/images/avatar/3.jpg" />
-        </ListItemAvatar>
-        <ListItemText
-          primary="Oui Oui"
-          secondary={
-            <React.Fragment>
-              <Typography
-                sx={{ display: 'inline' }}
-                component="span"
-                variant="body2"
-                color="text.primary"
-              >
-                Sandra Adams
-              </Typography>
-              {' — Do you have Paris recommendations? Have you ever…'}
-            </React.Fragment>
-          }
-        />
-      </ListItem>
-    </List>
+          {messagePerson === "" ? (<Inbox handleListItemClick={handleListItemClick} /> ) : <Chatbox messagePerson={messagePerson} setMessagePerson = {setMessagePerson} /> }
     </WidgetWrapper>
 }
 

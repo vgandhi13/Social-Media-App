@@ -73,6 +73,7 @@ export const colorTokens = {
                 default: colorTokens.grey[10],
                 alt: colorTokens.grey[0],
               },
+              
             }),
       },
       typography: {
