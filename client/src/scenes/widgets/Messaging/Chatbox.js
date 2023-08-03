@@ -1,7 +1,8 @@
-import { Box, useTheme, InputBase } from "@mui/material";
+import { Box, useTheme, InputBase, Divider, Avatar, Typography } from "@mui/material";
 import FlexBetween from "components/FlexBetween";
 import { Send, ArrowBack } from "@mui/icons-material";
 import { useState } from "react";
+import Message from "./Message";
 
 
 const Chattbox = ({messagePerson, setMessagePerson}) => {
@@ -22,9 +23,23 @@ const Chattbox = ({messagePerson, setMessagePerson}) => {
         position: "relative", // Add position relative to the container
       }}>
       {/* the "ArrowBack" icon is positioned absolutely at the top left of the container, and the container has a position: relative property, which allows absolute positioning within it. This way, the arrow stays at the top left while other elements remain in their original position. */}
-      <ArrowBack onClick = {() => setMessagePerson('')} sx={{ position: "absolute", top: "1.5rem", left: "0.5rem", fontSize: "2rem", "&:hover": {
-                      cursor: "pointer",
-                    }, }} /> {/* Position the arrow at the top left */}
+      <FlexBetween sx={{ position: "absolute", top: "1rem", alignItems: "center", justifyContent: "center" }}>
+  <ArrowBack
+    onClick={() => setMessagePerson('')}
+    sx={{ fontSize: "2rem", "&:hover": { cursor: "pointer" } }}
+  />
+  {/* Position the arrow at the top left */}
+  <Avatar alt="Cindy Baker" src="/static/images/avatar/3.jpg"
+  sx={{ marginLeft: "1rem", "&:hover": { cursor: "pointer" } }}
+   />
+  <Typography
+  sx={{ marginLeft: "0.5rem" }}
+  >
+    Name
+  </Typography>
+  
+</FlexBetween>
+        <Message />     
         <FlexBetween>
             <InputBase
                     placeholder="Type a message..."
