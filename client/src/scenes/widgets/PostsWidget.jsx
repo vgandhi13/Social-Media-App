@@ -14,6 +14,7 @@ const PostsWidget = ({userId, isProfile = false}) => {
             headers: {Authorization: `Bearer ${token}`},
         })
         const data = await response.json();
+        data.reverse()
         dispatch(setPosts({posts: data}));  //set the posts value inside the store
     }
     const getUserPosts = async () => {
@@ -22,6 +23,7 @@ const PostsWidget = ({userId, isProfile = false}) => {
             headers: {Authorization: `Bearer ${token}`},
         })
         const data = await response.json();
+        data.reverse()
         dispatch(setPosts({posts: data}));  //set the posts value inside the store
     }
 
