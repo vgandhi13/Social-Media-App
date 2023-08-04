@@ -1,6 +1,6 @@
-import {Box, useMediaQuery} from "@mui/material"
+import { Box, useMediaQuery } from "@mui/material";
 import { useEffect, useState } from "react";
-import { UseSelector, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import Navbar from "scenes/navbar";
 import FriendListWidget from "scenes/widgets/FriendListWidget";
@@ -10,18 +10,18 @@ import UserWidget from "scenes/widgets/UserWidget";
 
 const profilePage = () => {
     const [user, setUser] = useState(null);
-    const {userId} = useParams(); //grabs from url, we have set this through useNavigate
+    const { userId } = useParams();
     const token = useSelector((state) => state.token);
     const isNonMobileScreens = useMediaQuery("(min-width:1000px)");
 
     const getUser = async () => {
         const response = await fetch(`http://localhost:3001/users/${userId}`, {
-            method: "GET",
-            headers: {Authorization:  `Bearer ${token}`}
-        })
-        const data = response.json();
+        method: "GET",
+        headers: { Authorization: `Bearer ${token}` },
+        });
+        const data = await response.json();
         setUser(data);
-    }
+    };
 
     useEffect(() => {
         getUser();
