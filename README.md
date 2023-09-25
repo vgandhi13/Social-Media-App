@@ -1,5 +1,5 @@
 # UMassConnect
-
+![image](https://github.com/vgandhi13/UMassConnect/assets/82404434/45e2d30d-f15b-4ed7-b75d-a4ead0b55775)
 
 
 **Work In Progress** 🚧
